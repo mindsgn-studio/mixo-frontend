@@ -4,11 +4,9 @@ import { Autoplay, Pagination, Navigation } from "swiper";
 import { heroLinks } from "@/constants/heroLinks";
 import { HeroCard } from "./HeroCard";
 
-interface HeroLinks {}
-
 export const Hero = () => {
   return (
-    <Box height="500px" width="85vw">
+    <Box height="500px" width={["100vw", "100vw", "85vw", "85vw"]}>
       <Swiper
         spaceBetween={30}
         loop={true}
