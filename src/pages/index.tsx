@@ -1,7 +1,10 @@
-import { Box } from "@chakra-ui/react"
+import { Box } from "@chakra-ui/react";
+import { MainContainer } from "@/components/mainContainer";
 
 export default function Home() {
   return (
-    <Box />
-  )
+    <Box width="100vw">
+      <MainContainer />
+    </Box>
+  );
 }
