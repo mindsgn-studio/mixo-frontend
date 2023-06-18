@@ -1,15 +1,22 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Container } from "@chakra-ui/react";
 import { Input } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react";
 
 export const Navigation = () => {
   return (
     <Box
       position={"absolute"}
-      width={["100vw", "100vw", "85vw", "85vw"]}
       zIndex={2}
       padding={5}
+      display="flex"
+      justifyContent={"space-between"}
+      flexDir="row"
+      marginLeft={200}
+      marginRight={200}
     >
-      <Input placeholder="search" width="auto" color="white" />
+      <Heading color="white" size="md">
+        MIXØ.XYZ
+      </Heading>
     </Box>
   );
 };

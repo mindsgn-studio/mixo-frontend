@@ -8,16 +8,10 @@ import { NewArtist } from "./newArtist";
 
 export const HomeContainer = () => {
   return (
-    <Box
-      position={"absolute"}
-      right={0}
-      width={["100vw", "100vw", "85vw", "85vw"]}
-    >
+    <Box position={"absolute"} right={0} width={"100vw"}>
       <Navigation />
       <Hero />
-      <NewArtist />
       <RecentRelease />
-      <CommunityCard />
       <Footer />
     </Box>
   );

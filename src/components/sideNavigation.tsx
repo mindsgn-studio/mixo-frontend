@@ -5,7 +5,7 @@ import { LinkButton } from "./linkButton";
 export const SideNavigation = () => {
   return (
     <Box
-      display={["none", "none", "flex", "flex"]}
+      display={"none"}
       position="fixed"
       flexDirection={"column"}
       padding="1em"
@@ -23,6 +23,20 @@ export const SideNavigation = () => {
             <LinkButton key={link.name} name={link.name} link={link.link} />
           );
         })}
+      </Box>
+      <Box
+        display={["none", "none", "none", "flex"]}
+        flexDirection="column"
+        borderTop={"1px solid black"}
+      >
+        <Box>
+          <Heading size="sm">Library</Heading>
+        </Box>
+        <Box margin={2}>
+          <Heading size="sm">My Collection</Heading>
+          <Heading size="sm">Liked</Heading>
+          <Heading size="sm">Plalist</Heading>
+        </Box>
       </Box>
     </Box>
   );

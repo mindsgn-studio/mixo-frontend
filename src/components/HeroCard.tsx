@@ -20,13 +20,16 @@ export const HeroCard = ({ title, artist, art }: HeroLinks) => {
         backgroundSize="cover"
       />
       <Box
+        display="flex"
+        alignItems={"flex-end"}
         background={`linear-gradient(-90deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 1)), url(${art}) `}
+        backgroundPosition="center"
         position={"absolute"}
         padding="1em"
-        top={"2%"}
-        left="2%"
+        top={[2]}
+        left={["2%", "2%", "2%", 200]}
         backgroundSize="cover"
-        width="50%"
+        width={["90%", "90%", "70%", "70%"]}
         height="80%"
         borderRadius={20}
         marginTop={20}

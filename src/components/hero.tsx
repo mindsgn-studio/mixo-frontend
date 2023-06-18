@@ -2,11 +2,11 @@ import { Box, Heading } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper";
 import { heroLinks } from "@/constants/heroLinks";
-import { HeroCard } from "./HeroCard";
+import { HeroCard } from "@/components/heroCard";
 
 export const Hero = () => {
   return (
-    <Box height="500px" width={["100vw", "100vw", "85vw", "85vw"]}>
+    <Box height="500px" width={"100%"}>
       <Swiper
         spaceBetween={30}
         loop={true}
