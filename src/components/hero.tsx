@@ -2,7 +2,7 @@ import { Box, Heading } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper";
 import { heroLinks } from "@/constants/heroLinks";
-import { HeroCard } from "./heroCard";
+// import { HeroCard } from "./heroCard";
 
 export const Hero = () => {
   return (
@@ -15,11 +15,7 @@ export const Hero = () => {
       modules={[Autoplay, Pagination]}
     >
       {heroLinks.map((link: any) => {
-        return (
-          <SwiperSlide key={link.name}>
-            <HeroCard art={link.art} artist={link.artist} title={link.title} />
-          </SwiperSlide>
-        );
+        return <SwiperSlide key={link.name}></SwiperSlide>;
       })}
     </Swiper>
   );
