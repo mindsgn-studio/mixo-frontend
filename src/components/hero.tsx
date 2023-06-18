@@ -2,7 +2,7 @@ import { Box, Heading } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper";
 import { heroLinks } from "@/constants/heroLinks";
-import { HeroCard } from "@/components/heroCard";
+import { HeroCard } from "./heroCard";
 
 export const Hero = () => {
   return (
