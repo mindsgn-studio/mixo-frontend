@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text, Container } from "@chakra-ui/react";
 
 export const Footer = () => {
   return (
@@ -9,20 +9,16 @@ export const Footer = () => {
       height="200px"
       justifyContent={"space-between"}
       background="#F5F5F5"
-      padding={"1rem"}
+      padding={"3rem"}
     >
-      <Box
-        display={"flex"}
-        justifyContent="space-between"
-        flexDirection={"column"}
-      >
+      <Container>
         <Heading>MIXØ.XYZ</Heading>
         <Box>
           <Text>
             Copyright &copy; 2023 MINDSGN STUDIO PTY LTD. All rights reserved.
           </Text>
         </Box>
-      </Box>
+      </Container>
     </Box>
   );
 };

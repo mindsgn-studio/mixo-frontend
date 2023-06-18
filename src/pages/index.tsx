@@ -1,10 +1,7 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Container, Flex } from "@chakra-ui/react";
 import { MainContainer } from "@/components/mainContainer";
+import { HomeContainer } from "@/components/homeContainer";
 
 export default function Home() {
-  return (
-    <Box width="100vw">
-      <MainContainer />
-    </Box>
-  );
+  return <HomeContainer />;
 }

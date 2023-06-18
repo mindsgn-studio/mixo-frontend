@@ -1,4 +1,4 @@
-import { Box, Heading, Text } from "@chakra-ui/react";
+import { Box, Heading, Text, Container } from "@chakra-ui/react";
 import { FaPlay } from "react-icons/fa";
 
 interface HeroLinks {
@@ -9,12 +9,11 @@ interface HeroLinks {
 
 export const HeroCard = ({ title, artist, art }: HeroLinks) => {
   return (
-    <Box position={"relative"}>
+    <Box>
       <Box
         position={"relative"}
-        padding="2rem"
-        width="100%"
         height="500px"
+        width="100vw"
         filter={"blur(2px) opacity(0.7);"}
         background={`linear-gradient(rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 1)), url(${art}) `}
         backgroundSize="cover"
@@ -26,10 +25,11 @@ export const HeroCard = ({ title, artist, art }: HeroLinks) => {
         backgroundPosition="center"
         position={"absolute"}
         padding="1em"
-        top={[2]}
-        left={["2%", "2%", "2%", 200]}
+        top="40%"
+        left="50%"
+        transform="translate(-50%, -50%)"
         backgroundSize="cover"
-        width={["90%", "90%", "70%", "70%"]}
+        width={["95%", "95%", "65%", "65%"]}
         height="80%"
         borderRadius={20}
         marginTop={20}

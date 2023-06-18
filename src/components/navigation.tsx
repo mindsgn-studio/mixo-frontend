@@ -4,19 +4,17 @@ import { Heading } from "@chakra-ui/react";
 
 export const Navigation = () => {
   return (
-    <Box
-      position={"absolute"}
-      zIndex={2}
-      padding={5}
-      display="flex"
-      justifyContent={"space-between"}
-      flexDir="row"
-      marginLeft={200}
-      marginRight={200}
-    >
-      <Heading color="white" size="md">
-        MIXØ.XYZ
-      </Heading>
-    </Box>
+    <Container>
+      <Box
+        position={"absolute"}
+        zIndex={2}
+        padding={5}
+        display="flex"
+        justifyContent={"space-between"}
+        flexDir="row"
+      >
+        <Heading color="white">MIXØ.XYZ</Heading>
+      </Box>
+    </Container>
   );
 };
