@@ -23,16 +23,6 @@ export const Footer = () => {
           </Text>
         </Box>
       </Box>
-      <Box display={"flex"} gap={2}>
-        <Box display={"flex"} flexDirection="column">
-          <Box>Andriod App</Box>
-          <Box
-            width="200px"
-            height={"300px"}
-            background={`url("/google.png")`}
-          />
-        </Box>
-      </Box>
     </Box>
   );
 };
