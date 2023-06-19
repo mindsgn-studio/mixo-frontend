@@ -2,7 +2,11 @@ import { Box, Heading, Container } from "@chakra-ui/react";
 import { trackList } from "@/constants/trackList";
 import { TrackCard } from "./trackCard";
 
-export const RecentRelease = () => {
+interface RecentReleaseProp {
+  newTracks: any;
+}
+
+export const RecentRelease = ({ newTracks }: RecentReleaseProp) => {
   return (
     <Container>
       <Box marginBottom={5}>
@@ -10,11 +14,11 @@ export const RecentRelease = () => {
       </Box>
 
       <Box display={"flex"} gap={2} overflowX={"scroll"} minH="450px">
-        {trackList.map((track) => {
+        {newTracks.map((track: any) => {
           return (
             <TrackCard
               key={track.title}
-              artist={track.artist}
+              artist={track.name}
               title={track.title}
               art={track.art}
             />

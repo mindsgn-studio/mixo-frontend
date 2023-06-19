@@ -7,7 +7,7 @@ interface HeroLinks {
   art: string;
 }
 
-export const HeroCard = ({ title, artist, art }: HeroLinks) => {
+export const SwiperCard = ({ title, artist, art }: HeroLinks) => {
   return (
     <Box>
       <Box

@@ -5,12 +5,20 @@ import { Footer } from "@/components/footer";
 import { RecentRelease } from "./recentRelease";
 import { NewArtist } from "./newArtist";
 
-export const HomeContainer = () => {
+interface HomeContainerProps {
+  randomTracks: any;
+  newTracks: any;
+}
+
+export const HomeContainer = ({
+  randomTracks,
+  newTracks,
+}: HomeContainerProps) => {
   return (
     <>
       <Navigation />
-      <Hero />
-      <RecentRelease />
+      <Hero randomTracks={randomTracks} />
+      <RecentRelease newTracks={newTracks} />
       <Footer />
     </>
   );

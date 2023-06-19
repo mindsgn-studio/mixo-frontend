@@ -1,10 +1,14 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper";
 import { heroLinks } from "@/constants/heroLinks";
-// import { HeroCard } from "./heroCard";
+import { SwiperCard } from "./SwiperCard";
 
-export const Hero = () => {
+interface HeroProps {
+  randomTracks: any;
+}
+
+export const Hero = ({ randomTracks }: HeroProps) => {
   return (
     <Swiper
       spaceBetween={30}
@@ -14,8 +18,12 @@ export const Hero = () => {
       }}
       modules={[Autoplay, Pagination]}
     >
-      {heroLinks.map((link: any) => {
-        return <SwiperSlide key={link.name}></SwiperSlide>;
+      {randomTracks.map((link: any) => {
+        return (
+          <SwiperSlide key={link.name}>
+            <SwiperCard title={link.name} artist={link.artist} art={link.art} />
+          </SwiperSlide>
+        );
       })}
     </Swiper>
   );

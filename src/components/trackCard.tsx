@@ -43,7 +43,7 @@ export const TrackCard = ({ title, artist, art }: TrackCardProps) => {
             {artist}
           </Text>
           <Heading size="sm" color="white">
-            {artist}
+            {title}
           </Heading>
         </Box>
         <Box
