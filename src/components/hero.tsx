@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper";
-import { heroLinks } from "@/constants/heroLinks";
 import { SwiperCard } from "./swiperCard";
 
 interface HeroProps {
