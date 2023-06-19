@@ -1,5 +1,4 @@
 import { Box, Container, Flex } from "@chakra-ui/react";
-import { MainContainer } from "@/components/mainContainer";
 import { HomeContainer } from "@/components/homeContainer";
 import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 
