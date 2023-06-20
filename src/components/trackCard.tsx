@@ -1,6 +1,7 @@
 import { Box, Heading, Text } from "@chakra-ui/react";
 import { FaPlay } from "react-icons/fa";
 import { motion } from "framer-motion";
+import TextTruncate from "react-text-truncate";
 
 interface TrackCardProps {
   title: string;
@@ -12,13 +13,14 @@ export const TrackCard = ({ title, artist, art }: TrackCardProps) => {
   return (
     <Box
       cursor={"pointer"}
-      position={"relative"}
+      position="relative"
       margin="0.2em"
-      minW="300px"
+      width="300px"
       height="300px"
     >
       <Box
         display={"flex"}
+        position="relative"
         flexDir="row"
         as={motion.div}
         borderTopRadius={10}
@@ -30,6 +32,7 @@ export const TrackCard = ({ title, artist, art }: TrackCardProps) => {
         backgroundPosition="center"
       />
       <Box
+        position="relative"
         borderBottomRadius={10}
         padding={5}
         background="black"
@@ -38,15 +41,16 @@ export const TrackCard = ({ title, artist, art }: TrackCardProps) => {
         alignItems="center"
         justifyContent={"space-between"}
       >
-        <Box>
+        <Box flex={1}>
           <Text size="sm" color="#929292">
             {artist}
           </Text>
           <Heading size="sm" color="white">
-            {title}
+            <TextTruncate line={1} text={title} />
           </Heading>
         </Box>
         <Box
+          position="relative"
           padding={2}
           width="3em"
           height={"3em"}

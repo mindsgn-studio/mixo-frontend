@@ -15,11 +15,9 @@ export const HomeContainer = ({
   newTracks,
 }: HomeContainerProps) => {
   return (
-    <>
-      <Navigation />
+    <Box>
       <Hero randomTracks={randomTracks} />
       <RecentRelease newTracks={newTracks} />
-      <Footer />
-    </>
+    </Box>
   );
 };

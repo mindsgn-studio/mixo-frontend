@@ -1,6 +1,5 @@
-import { Box, Container, Flex } from "@chakra-ui/react";
 import { HomeContainer } from "@/components/homeContainer";
-import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
+import type { GetServerSideProps } from "next";
 
 export default function Home(props: any) {
   const { randomTracks, newTracks } = props;
