@@ -15,8 +15,8 @@ export const TrackCard = ({ title, artist, art }: TrackCardProps) => {
       cursor={"pointer"}
       position="relative"
       margin="0.2em"
-      width="300px"
-      height="300px"
+      minW="200px"
+      minH="350px"
     >
       <Box
         display={"flex"}
@@ -24,7 +24,7 @@ export const TrackCard = ({ title, artist, art }: TrackCardProps) => {
         flexDir="row"
         as={motion.div}
         borderTopRadius={10}
-        height="100%"
+        height="70%"
         width="100%"
         whileHover={{ backgroundSize: "150%" }}
         background={`linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url(${art}) `}
@@ -64,6 +64,8 @@ export const TrackCard = ({ title, artist, art }: TrackCardProps) => {
           <FaPlay size="1.5em" />
         </Box>
       </Box>
+      {/*
+       */}
     </Box>
   );
 };

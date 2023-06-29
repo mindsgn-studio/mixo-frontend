@@ -4,7 +4,7 @@ import { Heading } from "@chakra-ui/react";
 
 export const Navigation = () => {
   return (
-    <Container>
+    <Box width="100vw">
       <Box
         position={"absolute"}
         zIndex={2}
@@ -12,9 +12,15 @@ export const Navigation = () => {
         display="flex"
         justifyContent={"space-between"}
         flexDir="row"
+        background={`linear-gradient(rgba(0, 0, 0, 0.3), rgba(0,0, 0, 0.0))`}
+        width="100%"
       >
-        <Heading color="white">MIXØ.XYZ</Heading>
+        <Container>
+          <Box>
+            <Heading color="white">MIXØ.XYZ</Heading>
+          </Box>
+        </Container>
       </Box>
-    </Container>
+    </Box>
   );
 };
