@@ -1,15 +1,27 @@
 import { Box, Heading, Text } from "@chakra-ui/react";
-import { FaPlay } from "react-icons/fa";
+import { FaPlay, FaPause } from "react-icons/fa";
 import { motion } from "framer-motion";
 import TextTruncate from "react-text-truncate";
+import { useAudio } from "@/context/audio";
 
 interface TrackCardProps {
   title: string;
   artist: string;
   art: string;
+  url: string;
+  uuid: string;
+  background: string;
 }
 
-export const TrackCard = ({ title, artist, art }: TrackCardProps) => {
+export const TrackCard = ({
+  title,
+  artist,
+  art,
+  url,
+  uuid,
+  background,
+}: TrackCardProps) => {
+  const { loadMusic, current, isPlaying, stopMusic } = useAudio();
   return (
     <Box
       cursor={"pointer"}
@@ -41,7 +53,7 @@ export const TrackCard = ({ title, artist, art }: TrackCardProps) => {
         alignItems="center"
         justifyContent={"space-between"}
       >
-        <Box flex={1}>
+        <Box flex={1} padding={2}>
           <Text size="sm" color="#929292">
             {artist}
           </Text>
@@ -49,23 +61,40 @@ export const TrackCard = ({ title, artist, art }: TrackCardProps) => {
             <TextTruncate line={1} text={title} />
           </Heading>
         </Box>
-        <Box
-          position="relative"
-          padding={2}
-          width="3em"
-          height={"3em"}
-          margin="0.5em"
-          borderRadius={10}
-          display="flex"
-          background="white"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <FaPlay size="1.5em" />
-        </Box>
+        {current && current.uuid === uuid && isPlaying ? (
+          <Box
+            position="relative"
+            padding={2}
+            width="3em"
+            height={"3em"}
+            margin="0.5em"
+            borderRadius={10}
+            display="flex"
+            background="white"
+            alignItems="center"
+            justifyContent="center"
+            onClick={() => stopMusic()}
+          >
+            <FaPause size="1.5em" />
+          </Box>
+        ) : (
+          <Box
+            position="relative"
+            padding={2}
+            width="3em"
+            height={"3em"}
+            margin="0.5em"
+            borderRadius={10}
+            display="flex"
+            background="white"
+            alignItems="center"
+            justifyContent="center"
+            onClick={() => loadMusic(url, artist, title, background, uuid)}
+          >
+            <FaPlay size="1.5em" />
+          </Box>
+        )}
       </Box>
-      {/*
-       */}
     </Box>
   );
 };

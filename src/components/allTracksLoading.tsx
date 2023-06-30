@@ -6,9 +6,9 @@ export const AllTracksLoading = () => {
       <Box
         padding={20}
         width="100%"
-        display={"flex"}
+        display="flex"
         alignItems="center"
-        justifyContent={"center"}
+        justifyContent="center"
       >
         <CircularProgress isIndeterminate color="green.300" />
       </Box>

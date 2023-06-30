@@ -9,6 +9,7 @@ interface AllTracksContainerProps {
 }
 
 export const AllTracksContainer = ({ tracks }: AllTracksContainerProps) => {
+  console.log(tracks);
   const [page, setPage] = useState<number>(1);
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [limit, setLimit] = useState<number>(10);
@@ -47,7 +48,12 @@ export const AllTracksContainer = ({ tracks }: AllTracksContainerProps) => {
         }
       >
         <Container>
-          <SimpleGrid columns={[1, 1, 2, 3]} gap={6} spacing="40px">
+          <SimpleGrid
+            marginTop={100}
+            columns={[1, 1, 2, 3]}
+            gap={6}
+            spacing="40px"
+          >
             {tracklist.map((track: any, index: number) => {
               return (
                 <TrackCard
@@ -55,6 +61,9 @@ export const AllTracksContainer = ({ tracks }: AllTracksContainerProps) => {
                   artist={track.name}
                   title={track.title}
                   art={track.art}
+                  url={track.link}
+                  background={track.art}
+                  uuid={track._id}
                 />
               );
             })}
