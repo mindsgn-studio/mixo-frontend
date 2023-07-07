@@ -2568,6 +2568,11 @@ lodash.mergewith@4.6.2:
   resolved "https://registry.yarnpkg.com/lodash.mergewith/-/lodash.mergewith-4.6.2.tgz#617121f89ac55f59047c7aec1ccd6654c6590f55"
   integrity sha512-GK3g5RPZWTRSeLSpgP8Xhra+pnjBC56q9FZYe1d5RN3TJ35dbkGy3YqBSMbyCrlbi+CM9Z3Jk5yTL7RCsqboyQ==
 
+lodash@^4.17.21:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
+
 loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
@@ -3257,6 +3262,11 @@ tsutils@^3.21.0:
   dependencies:
     tslib "^1.8.1"
 
+tunajs@^1.0.8:
+  version "1.0.15"
+  resolved "https://registry.yarnpkg.com/tunajs/-/tunajs-1.0.15.tgz#fe1be8fac86049ca2353d6e078d07dee069a5147"
+  integrity sha512-es0bgyTHP8ftyWEot7YqLlLH30yZqHUTT6K5TKFhVqIB1Y6Cuu8WvBunfTVQSmzrpuhz15PQjyen7uuwi4gjdw==
+
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/type-check/-/type-check-0.4.0.tgz#07b8203bfa7056c0657050e3ccd2c37730bab8f1"
@@ -3321,6 +3331,14 @@ use-sound@^4.0.1:
   integrity sha512-hykJ86kNcu6y/FzlSHcQxhjSGMslZx2WlfLpZNoPbvueakv4OF3xPxEtGV2YmculrIaH0tPp9LtG4jgy17xMWg==
   dependencies:
     howler "^2.1.3"
+
+web-audio-daw@^4.13.2:
+  version "4.13.2"
+  resolved "https://registry.yarnpkg.com/web-audio-daw/-/web-audio-daw-4.13.2.tgz#203adac9a7e54630fc96ade24aafe42fdf31baec"
+  integrity sha512-PdcqFXZemxlJtUT1/eROxcMZ6UB6Mu9g73DOORBcWbRdlISTvOObZToEYMf2M/lGyo+eOGqFPYtVsYmW3RrvcA==
+  dependencies:
+    lodash "^4.17.21"
+    tunajs "^1.0.8"
 
 which-boxed-primitive@^1.0.2:
   version "1.0.2"

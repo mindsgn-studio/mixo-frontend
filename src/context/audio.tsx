@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Pizzicato from "pizzicato";
-import { background } from "@chakra-ui/react";
 
 interface CurrentInterface {
   path: string | null;
@@ -53,11 +52,17 @@ export const AudioProvider = ({ children }: { children: any }) => {
 
   //stop music
   const stopMusic = () => {
+    if (current) {
+      audio.stop();
+    }
     setIsPlaying(false);
   };
 
   const playMusic = () => {
-    setIsPlaying(true);
+    if (current && audio) {
+      // setIsPlaying(true);
+      // audio.play();
+    }
   };
 
   //load music
@@ -78,8 +83,11 @@ export const AudioProvider = ({ children }: { children: any }) => {
       background,
       uuid,
     };
-    playMusic();
+
     setCurrent(current);
+    //@ts-ignore
+    // const sound = new Pizzicato.Sound(path);
+    // sound.play();
   };
 
   return (
