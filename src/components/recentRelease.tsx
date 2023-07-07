@@ -39,6 +39,9 @@ export const RecentRelease = ({ newTracks }: RecentReleaseProp) => {
               artist={track.name}
               title={track.title}
               art={track.art}
+              background={track.art}
+              url={track.link}
+              uuid={track._id}
             />
           );
         })}
