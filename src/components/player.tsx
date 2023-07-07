@@ -1,22 +1,41 @@
+import React, { useState } from "react";
 import { useAudio } from "@/context/audio";
 import { Box, Button, Heading, Progress, Text } from "@chakra-ui/react";
-import { FaPlay, FaPause, FaHeart, FaList } from "react-icons/fa";
+import { FaPlay, FaPause } from "react-icons/fa";
 
-export const Player = () => {
+import TextTruncate from "react-text-truncate";
+
+const Player = () => {
+  const [artist, setArtist] = useState("");
+  const [title, setTitle] = useState("");
   const { isPlaying, playMusic, stopMusic, current } = useAudio();
+
+  const download = (path: string, filename: string) => {
+    const anchor = document.createElement("a");
+    anchor.href = path;
+    anchor.download = filename;
+
+    document.body.appendChild(anchor);
+
+    anchor.click();
+
+    document.body.removeChild(anchor);
+  };
+
+  React.useEffect(() => {}, [current]);
+
   return (
     <Box
       zIndex={2}
       width="100vw"
       position="fixed"
       background="white"
-      height="100px"
       bottom="0%"
       display={isPlaying || current ? "flex" : "none"}
       alignItems="center"
       justifyContent="space-between"
       flexDir="row"
-      padding={5}
+      padding={2}
     >
       <Box display="flex" flexDir="row">
         <Box
@@ -27,10 +46,12 @@ export const Player = () => {
           backgroundSize="100%"
           backgroundPosition="center"
         />
-        <Box padding={2}>
-          <Heading size="sm">{current && current.title}</Heading>
+        <Box padding={2} width="200px">
+          <Heading size="sm">
+            <TextTruncate line={1} text={`${title}`} />
+          </Heading>
           <Text size="sm" color="gray.400">
-            {current && current.artist}
+            <TextTruncate line={1} text={`${artist}`} />
           </Text>
         </Box>
       </Box>
@@ -39,28 +60,30 @@ export const Player = () => {
           display="flex"
           flexDir="column"
           alignItems="center"
-          justifyContent="space-evenly"
+          justifyContent="center"
         >
-          {isPlaying ? (
-            <Button background="none" onClick={() => stopMusic()}>
-              <FaPause />
-            </Button>
-          ) : (
-            <Button background="none" onClick={() => playMusic()}>
-              <FaPlay />
-            </Button>
-          )}
-          <Progress width="500px" size="xs" isIndeterminate />
+          <Box margin={2}>
+            {isPlaying ? (
+              <Button background="none" onClick={() => stopMusic()}>
+                <FaPause />
+              </Button>
+            ) : (
+              <Button background="none" onClick={() => playMusic()}>
+                <FaPlay />
+              </Button>
+            )}
+          </Box>
+          <Box margin={2}>
+            <Progress width="500px" size="xs" isIndeterminate />
+          </Box>
         </Box>
       </Box>
-      <Box>
-        <Button background="none">
-          <FaHeart />
-        </Button>
-        <Button background="none">
-          <FaList />
-        </Button>
+      <Box></Box>
+      <Box display="none">
+        <audio id="myAudio" />
       </Box>
     </Box>
   );
 };
+
+export default Player;

@@ -9,7 +9,6 @@ interface AllTracksContainerProps {
 }
 
 export const AllTracksContainer = ({ tracks }: AllTracksContainerProps) => {
-  console.log(tracks);
   const [page, setPage] = useState<number>(1);
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [limit, setLimit] = useState<number>(10);
@@ -29,9 +28,7 @@ export const AllTracksContainer = ({ tracks }: AllTracksContainerProps) => {
       if (results.currentPage === results.totalPages) setHasMore(false);
       const newTracklist = [...tracklist, ...results.data];
       setTrackList(newTracklist);
-    } catch (error) {
-      console.error(error);
-    }
+    } catch (error) {}
   };
 
   return (

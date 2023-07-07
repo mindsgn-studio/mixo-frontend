@@ -7,7 +7,10 @@ import { ChakraProvider } from "@chakra-ui/react";
 import theme from "@/theme";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
-import { Player } from "@/components/player";
+import dynamic from "next/dynamic";
+const Player = dynamic(() => import("@/components/player"), {
+  ssr: false,
+});
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

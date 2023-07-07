@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import Pizzicato from "pizzicato";
+import React, { useState, useEffect } from "react";
 
 interface CurrentInterface {
   path: string | null;
@@ -10,7 +9,6 @@ interface CurrentInterface {
 }
 
 interface AudioInterface {
-  audio: any;
   isPlaying: boolean;
   stopMusic: () => void;
   playMusic: () => void;
@@ -26,7 +24,6 @@ interface AudioInterface {
 }
 
 export const AudioContext = React.createContext<AudioInterface>({
-  audio: null,
   isPlaying: false,
   playlist: [],
   stopMusic: () => {},
@@ -46,22 +43,22 @@ export const useAudio = () => React.useContext(AudioContext);
 export const AudioProvider = ({ children }: { children: any }) => {
   const [current, setCurrent] = useState<CurrentInterface | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const [audio, setAudio] = useState<any>(null);
+  const [audio, setAudio] = useState<any>();
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [playlist, setPlaylist] = useState([]);
 
   //stop music
   const stopMusic = () => {
-    if (current) {
-      audio.stop();
+    if (current && audio) {
+      audio.pause();
+      setIsPlaying(false);
     }
-    setIsPlaying(false);
   };
 
   const playMusic = () => {
-    if (current && audio) {
-      // setIsPlaying(true);
-      // audio.play();
+    if (current) {
+      audio.play();
+      setIsPlaying(true);
     }
   };
 
@@ -76,6 +73,9 @@ export const AudioProvider = ({ children }: { children: any }) => {
     if (isPlaying) {
       stopMusic();
     }
+    //@ts-ignore
+    const newAudio: HTMLAudioElement = document.getElementById("myAudio");
+
     const current: CurrentInterface = {
       path,
       artist,
@@ -84,16 +84,22 @@ export const AudioProvider = ({ children }: { children: any }) => {
       uuid,
     };
 
+    if (current && audio) {
+      audio.pause();
+      setIsPlaying(false);
+    }
+
+    newAudio.src = path;
+
+    newAudio.play();
+    setAudio(newAudio);
     setCurrent(current);
-    //@ts-ignore
-    // const sound = new Pizzicato.Sound(path);
-    // sound.play();
+    setIsPlaying(true);
   };
 
   return (
     <AudioContext.Provider
       value={{
-        audio,
         isPlaying,
         stopMusic,
         playMusic,

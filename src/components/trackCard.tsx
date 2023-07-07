@@ -3,6 +3,7 @@ import { FaPlay, FaPause } from "react-icons/fa";
 import { motion } from "framer-motion";
 import TextTruncate from "react-text-truncate";
 import { useAudio } from "@/context/audio";
+var load = require("audio-loader");
 
 interface TrackCardProps {
   title: string;
@@ -27,8 +28,8 @@ export const TrackCard = ({
       cursor={"pointer"}
       position="relative"
       margin="0.2em"
-      minW="200px"
-      minH="350px"
+      minWidth="300px"
+      height="350px"
     >
       <Box
         display={"flex"}
@@ -54,11 +55,11 @@ export const TrackCard = ({
         justifyContent={"space-between"}
       >
         <Box flex={1} padding={2}>
-          <Text size="sm" color="#929292">
-            {artist}
-          </Text>
           <Heading size="sm" color="white">
             <TextTruncate line={1} text={title} />
+          </Heading>
+          <Heading size="sm" color="white">
+            <TextTruncate line={1} text={artist} />
           </Heading>
         </Box>
         {current && current.uuid === uuid && isPlaying ? (
