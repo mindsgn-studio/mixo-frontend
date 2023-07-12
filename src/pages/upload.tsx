@@ -1,68 +1,60 @@
-import { useState } from 'react';
-import { Box, Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
+import { Box, Heading } from '@chakra-ui/react';
+import { useDropzone } from 'react-dropzone';
+import { useCallback, useState } from 'react';
 import axios from 'axios';
 
-const UploadPage = () => {
-  const [file, setFile] = useState(null);
+const UploadPage: React.FC = () => {
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
 
-  const handleFileChange = (event) => {
-    setFile(event.target.files[0]);
-  };
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    setUploadedFile(acceptedFiles[0]);
+  }, []);
 
-  const handleDrop = (event) => {
-    event.preventDefault();
-    setFile(event.dataTransfer.files[0]);
-  };
-
-  const handleDragOver = (event) => {
-    event.preventDefault();
-  };
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   const handleUpload = async () => {
-    try {
-      const formData = new FormData();
-      formData.append('mp3', file);
+    if (!uploadedFile) return;
 
-      await axios.post('/upload/audio', formData, {
+    const formData = new FormData();
+    formData.append('mp3', uploadedFile);
+
+    try {
+      const response = await axios.post('/upload/audio', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-
-      // Handle successful upload
-      console.log('File uploaded successfully!');
+      
+      // Handle response from the server
+      console.log(response.data);
     } catch (error) {
-      // Handle upload error
-      console.error('Failed to upload file:', error);
+      // Handle error
+      console.error(error);
     }
   };
 
   return (
-    <Box>
-      <FormControl>
-        <FormLabel htmlFor="file">Select MP3 file</FormLabel>
-        <Input
-          type="file"
-          id="file"
-          onChange={handleFileChange}
-          onDrop={handleDrop}
-          onDragOver={handleDragOver}
-        />
-        <Box
-          border="2px dashed"
-          borderColor="gray.200"
-          borderRadius="md"
-          p={4}
-          mt={4}
-          onDrop={handleDrop}
-          onDragOver={handleDragOver}
-        >
-          <Box textAlign="center">Drag and drop an MP3 file here</Box>
-        </Box>
-      </FormControl>
-      <Button mt={4} colorScheme="teal" onClick={handleUpload}>
-        Upload
-      </Button>
+    <Box p={4}>
+      <Heading as="h1" mb={4}>
+        Upload Page
+      </Heading>
+      <Box
+        {...getRootProps()}
+        p={4}
+        border="2px"
+        borderColor={isDragActive ? 'blue.500' : 'gray.200'}
+        borderRadius="md"
+        textAlign="center"
+        cursor="pointer"
+      >
+        <input {...getInputProps()} />
+        {isDragActive ? (
+          <p>Drop the file here...</p>
+        ) : (
+          <p>Drag and drop an .mp3 file here, or click to select file</p>
+        )}
+      </Box>
+      <button onClick={handleUpload}>Upload</button>
     </Box>
   );
 };
