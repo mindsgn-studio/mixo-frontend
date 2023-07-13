@@ -13,25 +13,29 @@ const UploadPage: React.FC = () => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   const handleUpload = async () => {
-    if (!uploadedFile) return;
+  if (!uploadedFile) return;
 
-    const formData = new FormData();
-    formData.append('mp3', uploadedFile);
+  const formData = new FormData();
+  formData.append('mp3', uploadedFile);
 
-    try {
-      const response = await axios.post('/api/upload/', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+  try {
+    console.log('Sending file upload request...'); // Add console log statement
+    const response = await axios.post('http://localhost:8080/upload/audio', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    
+    console.log('File upload response:', response.data); // Add console log statement
 
-      // Handle response from the server
-      console.log(response.data);
-    } catch (error) {
-      // Handle error
-      console.error(error);
-    }
-  };
+    // Handle response from the server
+    console.log(response.data);
+  } catch (error) {
+    // Handle error
+    console.error('File upload error:', error); // Add console log statement
+  }
+};
+
 
   return (
     <Box minHeight="100vh" display="flex" flexDirection="column">
