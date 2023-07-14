@@ -19,20 +19,15 @@ const UploadPage: React.FC = () => {
   formData.append('mp3', uploadedFile);
 
   try {
-    console.log('Sending file upload request...'); // Add console log statement
     const response = await axios.post('http://localhost:8080/upload/audio', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
     });
-    
-    console.log('File upload response:', response.data); // Add console log statement
 
-    // Handle response from the server
     console.log(response.data);
   } catch (error) {
-    // Handle error
-    console.error('File upload error:', error); // Add console log statement
+    console.error('File upload error:', error);
   }
 };
 
