@@ -1,7 +1,7 @@
-import { Box, Heading, Container } from "@chakra-ui/react";
-import { trackList } from "@/constants/trackList";
-import { TrackCard } from "./trackCard";
-import Link from "next/link";
+import { Box, Heading, Container } from '@chakra-ui/react';
+import { trackList } from '@/constants/trackList';
+import { TrackCard } from './trackCard';
+import Link from 'next/link';
 
 interface RecentReleaseProp {
   newTracks: any;
@@ -13,9 +13,9 @@ export const RecentRelease = ({ newTracks }: RecentReleaseProp) => {
       <Box
         marginBottom={5}
         display="flex"
-        flexDir={"row"}
+        flexDir={'row'}
         justifyContent="space-between"
-        alignItems={"center"}
+        alignItems={'center'}
       >
         <Heading size="md">Recent Release</Heading>
         <Box cursor="pointer">
@@ -26,9 +26,9 @@ export const RecentRelease = ({ newTracks }: RecentReleaseProp) => {
       </Box>
 
       <Box
-        display={"flex"}
+        display={'flex'}
         gap={2}
-        overflowX={"scroll"}
+        overflowX={'scroll'}
         minH="450px"
         justifyContent="space-between"
       >
@@ -36,10 +36,10 @@ export const RecentRelease = ({ newTracks }: RecentReleaseProp) => {
           return (
             <TrackCard
               key={track.title}
-              artist={track.name}
+              artist={track.artist[0]}
               title={track.title}
-              art={track.art}
-              background={track.art}
+              art={track.artwork}
+              background={track.artwork}
               url={track.link}
               uuid={track._id}
             />

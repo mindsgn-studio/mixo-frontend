@@ -1,9 +1,7 @@
-import { Box, Heading, Text } from "@chakra-ui/react";
-import { FaPlay, FaPause } from "react-icons/fa";
-import { motion } from "framer-motion";
-import TextTruncate from "react-text-truncate";
-import { useAudio } from "@/context/audio";
-var load = require("audio-loader");
+import { Box, Heading, Text } from '@chakra-ui/react';
+import { FaPlay, FaPause } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { useAudio } from '@/context/audio';
 
 interface TrackCardProps {
   title: string;
@@ -12,6 +10,7 @@ interface TrackCardProps {
   url: string;
   uuid: string;
   background: string;
+  source?: string;
 }
 
 export const TrackCard = ({
@@ -21,25 +20,35 @@ export const TrackCard = ({
   url,
   uuid,
   background,
+  source
 }: TrackCardProps) => {
-  const { loadMusic, current, isPlaying, stopMusic } = useAudio();
+  const { loadMusic, current, isPlaying, stopMusic, pauseMusic } = useAudio();
+
+  const truncateText = (text: string, maxLength: number) => {
+    if (text.length <= maxLength) {
+      return text;
+    } else {
+      return text.slice(0, maxLength - 3) + '...';
+    }
+  };
+
   return (
     <Box
-      cursor={"pointer"}
+      cursor={'pointer'}
       position="relative"
       margin="0.2em"
       minWidth="300px"
       height="350px"
     >
       <Box
-        display={"flex"}
+        display={'flex'}
         position="relative"
         flexDir="row"
         as={motion.div}
         borderTopRadius={10}
         height="70%"
         width="100%"
-        whileHover={{ backgroundSize: "150%" }}
+        whileHover={{ backgroundSize: '150%' }}
         background={`linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url(${art}) `}
         backgroundSize="100%"
         backgroundPosition="center"
@@ -52,29 +61,44 @@ export const TrackCard = ({
         display="flex"
         flexDir="row"
         alignItems="center"
-        justifyContent={"space-between"}
+        justifyContent={'space-between'}
       >
         <Box flex={1} padding={2}>
-          <Heading size="sm" color="white">
-            <TextTruncate line={1} text={title} />
+          <Heading size="sm" color="#fff">
+            {truncateText(title, 20)}
           </Heading>
-          <Heading size="sm" color="white">
-            <TextTruncate line={1} text={artist} />
-          </Heading>
+          <Text size="sm" color="#737373">
+            {truncateText(artist, 10)}
+          </Text>
+          {source ? (
+            <Box
+              display={'flex'}
+              alignItems={'center'}
+              justifyContent={'center'}
+              backgroundColor={'#fff'}
+              width="60px"
+              borderRadius={20}
+              margin={'5px'}
+            >
+              <Text fontWeight={'bold'} size="6px" color="#000">
+                {source}
+              </Text>
+            </Box>
+          ) : null}
         </Box>
         {current && current.uuid === uuid && isPlaying ? (
           <Box
             position="relative"
             padding={2}
             width="3em"
-            height={"3em"}
+            height={'3em'}
             margin="0.5em"
             borderRadius={10}
             display="flex"
             background="white"
             alignItems="center"
             justifyContent="center"
-            onClick={() => stopMusic()}
+            onClick={() => pauseMusic()}
           >
             <FaPause size="1.5em" />
           </Box>
@@ -83,7 +107,7 @@ export const TrackCard = ({
             position="relative"
             padding={2}
             width="3em"
-            height={"3em"}
+            height={'3em'}
             margin="0.5em"
             borderRadius={10}
             display="flex"

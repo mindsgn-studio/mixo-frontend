@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 interface CurrentInterface {
   path: string | null;
@@ -12,6 +12,7 @@ interface AudioInterface {
   isPlaying: boolean;
   stopMusic: () => void;
   playMusic: () => void;
+  pauseMusic: () => void;
   loadMusic: (
     path: string,
     artist: string,
@@ -27,6 +28,7 @@ export const AudioContext = React.createContext<AudioInterface>({
   isPlaying: false,
   playlist: [],
   stopMusic: () => {},
+  pauseMusic: () => {},
   playMusic: () => {},
   loadMusic: (
     path: string,
@@ -35,7 +37,7 @@ export const AudioContext = React.createContext<AudioInterface>({
     background: string,
     uuid: string
   ) => {},
-  current: null,
+  current: null
 });
 
 export const useAudio = () => React.useContext(AudioContext);
@@ -47,8 +49,28 @@ export const AudioProvider = ({ children }: { children: any }) => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [playlist, setPlaylist] = useState([]);
 
+  const logStream = async () => {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API}/song/stream/${
+        current && current.uuid
+      }/hduwe78y7y473t6346t43r5r35`,
+      {
+        method: 'POST'
+      }
+    );
+    console.log(response);
+  };
+
   //stop music
-  const stopMusic = () => {
+  const stopMusic = async () => {
+    if (current && audio) {
+      logStream();
+      audio.stop();
+      setIsPlaying(false);
+    }
+  };
+
+  const pauseMusic = async () => {
     if (current && audio) {
       audio.pause();
       setIsPlaying(false);
@@ -63,7 +85,7 @@ export const AudioProvider = ({ children }: { children: any }) => {
   };
 
   //load music
-  const loadMusic = (
+  const loadMusic = async (
     path: string,
     artist: string,
     title: string,
@@ -71,17 +93,17 @@ export const AudioProvider = ({ children }: { children: any }) => {
     uuid: string
   ) => {
     if (isPlaying) {
-      stopMusic();
+      await stopMusic();
     }
     //@ts-ignore
-    const newAudio: HTMLAudioElement = document.getElementById("myAudio");
+    const newAudio: HTMLAudioElement = document.getElementById('myAudio');
 
     const current: CurrentInterface = {
       path,
       artist,
       title,
       background,
-      uuid,
+      uuid
     };
 
     if (current && audio) {
@@ -104,8 +126,9 @@ export const AudioProvider = ({ children }: { children: any }) => {
         stopMusic,
         playMusic,
         loadMusic,
+        pauseMusic,
         playlist,
-        current,
+        current
       }}
     >
       {children}

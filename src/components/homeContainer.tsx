@@ -1,6 +1,6 @@
-import { Box } from "@chakra-ui/react";
-import { Hero } from "@/components/hero";
-import { RecentRelease } from "./recentRelease";
+import { Box } from '@chakra-ui/react';
+import { Hero } from '@/components/hero';
+import { RecentRelease } from './recentRelease';
 
 interface HomeContainerProps {
   randomTracks: any;
@@ -9,12 +9,7 @@ interface HomeContainerProps {
 
 export const HomeContainer = ({
   randomTracks,
-  newTracks,
+  newTracks
 }: HomeContainerProps) => {
-  return (
-    <Box>
-      <Hero randomTracks={randomTracks} />
-      <RecentRelease newTracks={newTracks} />
-    </Box>
-  );
+  return <RecentRelease newTracks={newTracks} />;
 };

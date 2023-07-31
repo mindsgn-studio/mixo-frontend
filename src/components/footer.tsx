@@ -1,15 +1,15 @@
-import { Box, Flex, Heading, Text, Container } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text, Container } from '@chakra-ui/react';
 
 export const Footer = () => {
   return (
     <Box
       width="100%"
-      display={"flex"}
-      flexDirection={"row"}
+      display={'flex'}
+      flexDirection={'row'}
       height="200px"
-      justifyContent={"space-between"}
+      justifyContent={'space-between'}
       background="#F5F5F5"
-      padding={"3rem"}
+      padding={'3rem'}
     >
       <Container>
         <Heading>MIXØ.XYZ</Heading>

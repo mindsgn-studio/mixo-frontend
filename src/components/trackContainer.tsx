@@ -1,4 +1,4 @@
-import { AllTracksContainer } from "./allTracksContainer";
+import { AllTracksContainer } from './allTracksContainer';
 
 interface TrackContainerProps {
   tracks?: any;

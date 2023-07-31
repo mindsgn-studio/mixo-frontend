@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { SimpleGrid, Container, Box } from "@chakra-ui/react";
-import { TrackCard } from "./trackCard";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { AllTracksLoading } from "@/components/allTracksLoading";
+import { useEffect, useState } from 'react';
+import { SimpleGrid, Container, Box } from '@chakra-ui/react';
+import { TrackCard } from './trackCard';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { AllTracksLoading } from '@/components/allTracksLoading';
 
 interface AllTracksContainerProps {
   tracks?: any;
@@ -17,9 +17,9 @@ export const AllTracksContainer = ({ tracks }: AllTracksContainerProps) => {
   const getNextPage = async () => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API}/track/all?page=${page + 1}`,
+        `${process.env.NEXT_PUBLIC_API}/song/all?page=${page + 1}`,
         {
-          method: "GET",
+          method: 'GET'
         }
       );
 
@@ -39,7 +39,7 @@ export const AllTracksContainer = ({ tracks }: AllTracksContainerProps) => {
         hasMore={hasMore}
         loader={<AllTracksLoading key={0} />}
         endMessage={
-          <p style={{ textAlign: "center" }}>
+          <p style={{ textAlign: 'center' }}>
             <b>Yay! You have seen it all</b>
           </p>
         }
@@ -52,15 +52,17 @@ export const AllTracksContainer = ({ tracks }: AllTracksContainerProps) => {
             spacing="40px"
           >
             {tracklist.map((track: any, index: number) => {
+              const { name } = track.source;
               return (
                 <TrackCard
                   key={`${track._id}-${index}`}
-                  artist={track.name}
+                  artist={track.artist[0]}
                   title={track.title}
-                  art={track.art}
+                  art={track.artwork}
                   url={track.link}
-                  background={track.art}
+                  background={track.artwork}
                   uuid={track._id}
+                  source={name}
                 />
               );
             })}
