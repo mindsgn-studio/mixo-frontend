@@ -3,9 +3,11 @@ import { Input } from '@chakra-ui/react';
 import { Heading } from '@chakra-ui/react';
 import { Web3Auth } from '@web3auth/modal';
 import { useEffect, useLayoutEffect, useState } from 'react';
+import { useAudio } from '@/context/audio';
 
 export const Navigation = () => {
   const [web3auth, setWeb3auth] = useState<Web3Auth | null>(null);
+  const { connected, setConnected, setAddress, address } = useAudio();
 
   const login = async () => {
     if (!web3auth) {
@@ -14,6 +16,19 @@ export const Navigation = () => {
     const web3authProvider = await web3auth.connect();
     if (!web3authProvider) {
       throw new Error('web3authprovider not initialized yet');
+    }
+
+    setConnected(true);
+    const info = await web3auth.getUserInfo();
+    console.log(web3auth.provider);
+    //setAddress();
+  };
+
+  const signOut = async () => {
+    if (web3auth) {
+      web3auth?.logout();
+      setConnected(false);
+      setAddress('');
     }
   };
 
@@ -24,7 +39,7 @@ export const Navigation = () => {
           clientId: `${process.env.NEXT_PUBLIC_WEB3AUTH_CLIENT}`,
           chainConfig: {
             chainNamespace: 'eip155',
-            chainId: '1',
+            chainId: '0x89',
             rpcTarget: 'https://rpc.ankr.com/eth'
           }
         });
@@ -40,6 +55,11 @@ export const Navigation = () => {
     init();
   }, []);
 
+  useEffect(() => {
+    if (web3auth) {
+    }
+  }, [web3auth]);
+
   return (
     <Box
       zIndex={2}
@@ -48,17 +68,18 @@ export const Navigation = () => {
       justifyContent={'space-between'}
       flexDir="row"
       width="100%"
+      backdropBlur={'10px'}
       background={`linear-gradient(rgba(0, 0, 0, 0.3), rgba(0,0, 0, 0.0))`}
     >
       <Box />
-      {web3auth ? (
+      {connected ? (
         <Button
           background={'black'}
           onClick={() => {
-            login();
+            signOut();
           }}
         >
-          <Text color="white">Sign In</Text>
+          <Text color="white">Sign Out</Text>
         </Button>
       ) : (
         <Button
@@ -67,7 +88,7 @@ export const Navigation = () => {
             login();
           }}
         >
-          <Text color="white">Sign Out</Text>
+          <Text color="white">Sign In</Text>
         </Button>
       )}
     </Box>

@@ -5,16 +5,21 @@ import { LinkButton } from './linkButton';
 export const SideNavigation = () => {
   return (
     <Box
+      display={['none', 'none', 'none', 'flex']}
       position={'fixed'}
       padding="1em"
       height="100vh"
-      boxShadow={'rgba(0, 0, 0, 0.1) 0px 12px 12px'}
+      boxShadow={'rgba(0, 0, 0, 0.1) 0px 0px 12px'}
       flex={1}
       background={'white'}
       zIndex={1}
       top={0}
     >
-      <Heading display={['none', 'none', 'none', 'flex']} cursor={'pointer'}>
+      <Heading
+        display={['none', 'none', 'none', 'flex']}
+        cursor={'pointer'}
+        color={'black'}
+      >
         mixø.xyz
       </Heading>
       <Box display={['none', 'none', 'none', 'flex']} flexDirection="column">

@@ -64,71 +64,75 @@ const Player = () => {
 
   return (
     <Box
-      zIndex={2}
-      width="100vw"
-      flex={1}
-      background="white"
-      bottom="0%"
       display={isPlaying || current ? 'flex' : 'none'}
-      alignItems="center"
-      justifyContent="space-between"
-      flexDir="row"
-      padding={2}
+      flexDir={'column'}
+      background="white"
+      width="100vw"
+      position="fixed"
+      bottom="0%"
+      zIndex={10}
     >
-      <Box display="flex" flexDir="row">
-        <Box
-          width={50}
-          height={50}
-          borderRadius={10}
-          background={`url(${current && current.background})`}
-          backgroundSize="100%"
-          backgroundPosition="center"
-        />
-        <Box padding={2} width="200px">
-          <Heading size="sm">
-            <TextTruncate line={1} text={`${title}`} />
-          </Heading>
-          <Text size="sm" color="gray.400">
-            <TextTruncate line={1} text={`${artist}`} />
-          </Text>
+      <Progress width="100%" size="xs" isIndeterminate />
+      <Box
+        flex={1}
+        display={'flex'}
+        width="100%"
+        alignItems="center"
+        justifyContent="space-between"
+        flexDir="row"
+        padding={2}
+      >
+        <Box display="flex" flexDir="row">
+          <Box
+            width={50}
+            height={50}
+            borderRadius={10}
+            background={`url(${current && current.background})`}
+            backgroundSize="100%"
+            backgroundPosition="center"
+          />
+          <Box padding={2} width="200px">
+            <Heading size="sm">
+              <TextTruncate line={1} text={`${title}`} />
+            </Heading>
+            <Text size="sm" color="gray.400">
+              <TextTruncate line={1} text={`${artist}`} />
+            </Text>
+          </Box>
         </Box>
-      </Box>
-      <Box>
-        <Box
-          display="flex"
-          flexDir="column"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Box margin={2}>
-            {isPlaying ? (
-              <Button background="none" onClick={() => pauseMusic()}>
-                <FaPause />
-              </Button>
-            ) : (
-              <Button background="none" onClick={() => playMusic()}>
-                <FaPlay />
-              </Button>
-            )}
+        <Box>
+          <Box
+            display="flex"
+            flexDir="column"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Box margin={2}>
+              {isPlaying ? (
+                <Button background="none" onClick={() => pauseMusic()}>
+                  <FaPause />
+                </Button>
+              ) : (
+                <Button background="none" onClick={() => playMusic()}>
+                  <FaPlay />
+                </Button>
+              )}
 
-            {isLiked ? (
-              <Button background="none" onClick={() => like()}>
-                <FaHeart color="green" />
-              </Button>
-            ) : (
-              <Button background="none" onClick={() => like()}>
-                <FaHeart />
-              </Button>
-            )}
-          </Box>
-          <Box margin={2}>
-            <Progress width="500px" size="xs" isIndeterminate />
+              {isLiked ? (
+                <Button background="none" onClick={() => like()}>
+                  <FaHeart color="green" />
+                </Button>
+              ) : (
+                <Button background="none" onClick={() => like()}>
+                  <FaHeart />
+                </Button>
+              )}
+            </Box>
           </Box>
         </Box>
-      </Box>
-      <Box></Box>
-      <Box display="none">
-        <audio id="myAudio" />
+        <Box display="none">
+          <audio id="myAudio" />
+        </Box>
       </Box>
     </Box>
   );

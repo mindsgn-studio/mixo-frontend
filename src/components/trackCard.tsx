@@ -49,43 +49,12 @@ export const TrackCard = ({
         height="70%"
         width="100%"
         whileHover={{ backgroundSize: '150%' }}
+        alignItems={'flex-end'}
+        justifyContent={'flex-end'}
         background={`linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)), url(${art}) `}
         backgroundSize="100%"
         backgroundPosition="center"
-      />
-      <Box
-        position="relative"
-        borderBottomRadius={10}
-        padding={5}
-        background="black"
-        display="flex"
-        flexDir="row"
-        alignItems="center"
-        justifyContent={'space-between'}
       >
-        <Box flex={1} padding={2}>
-          <Heading size="sm" color="#fff">
-            {truncateText(title, 20)}
-          </Heading>
-          <Text size="sm" color="#737373">
-            {truncateText(artist, 10)}
-          </Text>
-          {source ? (
-            <Box
-              display={'flex'}
-              alignItems={'center'}
-              justifyContent={'center'}
-              backgroundColor={'#fff'}
-              width="60px"
-              borderRadius={20}
-              margin={'5px'}
-            >
-              <Text fontWeight={'bold'} size="6px" color="#000">
-                {source}
-              </Text>
-            </Box>
-          ) : null}
-        </Box>
         {current && current.uuid === uuid && isPlaying ? (
           <Box
             position="relative"
@@ -100,7 +69,7 @@ export const TrackCard = ({
             justifyContent="center"
             onClick={() => pauseMusic()}
           >
-            <FaPause size="1.5em" />
+            <FaPause color="black" size="1.5em" />
           </Box>
         ) : (
           <Box
@@ -116,9 +85,43 @@ export const TrackCard = ({
             justifyContent="center"
             onClick={() => loadMusic(url, artist, title, background, uuid)}
           >
-            <FaPlay size="1.5em" />
+            <FaPlay color="black" size="1.5em" />
           </Box>
         )}
+      </Box>
+      <Box
+        position="relative"
+        borderBottomRadius={10}
+        padding={5}
+        background="black"
+        display="flex"
+        flexDir="row"
+        alignItems="center"
+        justifyContent={'space-between'}
+      >
+        <Box flex={1} padding={2}>
+          <Heading size="sm" color="#fff">
+            {truncateText(title, 20)}
+          </Heading>
+          <Text fontWeight={'light'} size="sm" color="#737373">
+            {truncateText(artist, 10)}
+          </Text>
+        </Box>
+        {source ? (
+          <Box
+            display={'flex'}
+            alignItems={'center'}
+            justifyContent={'center'}
+            backgroundColor={'#fff'}
+            width="60px"
+            borderRadius={20}
+            margin={'5px'}
+          >
+            <Text fontWeight={'bold'} fontSize={8} color="#000">
+              {source}
+            </Text>
+          </Box>
+        ) : null}
       </Box>
     </Box>
   );

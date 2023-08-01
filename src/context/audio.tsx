@@ -22,6 +22,10 @@ interface AudioInterface {
   ) => void;
   playlist: any[];
   current: CurrentInterface | null;
+  address: string | null;
+  setAddress: (address: string) => void;
+  connected: boolean;
+  setConnected: (connected: boolean) => void;
 }
 
 export const AudioContext = React.createContext<AudioInterface>({
@@ -37,7 +41,11 @@ export const AudioContext = React.createContext<AudioInterface>({
     background: string,
     uuid: string
   ) => {},
-  current: null
+  current: null,
+  address: null,
+  connected: false,
+  setAddress: (address: string) => {},
+  setConnected: (connected: boolean) => {}
 });
 
 export const useAudio = () => React.useContext(AudioContext);
@@ -45,32 +53,32 @@ export const useAudio = () => React.useContext(AudioContext);
 export const AudioProvider = ({ children }: { children: any }) => {
   const [current, setCurrent] = useState<CurrentInterface | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const [audio, setAudio] = useState<any>();
+  const [audio, setAudio] = useState<any | null>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [playlist, setPlaylist] = useState([]);
+  const [connected, setConnected] = useState<boolean>(false);
+  const [address, setAddress] = useState<string | null>(null);
 
   const logStream = async () => {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API}/song/stream/${
         current && current.uuid
-      }/hduwe78y7y473t6346t43r5r35`,
+      }/${address}`,
       {
         method: 'POST'
       }
     );
     console.log(response);
   };
-
-  //stop music
-  const stopMusic = async () => {
+  q;
+  const stopMusic = () => {
     if (current && audio) {
-      logStream();
       audio.stop();
       setIsPlaying(false);
     }
   };
 
-  const pauseMusic = async () => {
+  const pauseMusic = () => {
     if (current && audio) {
       audio.pause();
       setIsPlaying(false);
@@ -84,8 +92,7 @@ export const AudioProvider = ({ children }: { children: any }) => {
     }
   };
 
-  //load music
-  const loadMusic = async (
+  const loadMusic = (
     path: string,
     artist: string,
     title: string,
@@ -93,7 +100,7 @@ export const AudioProvider = ({ children }: { children: any }) => {
     uuid: string
   ) => {
     if (isPlaying) {
-      await stopMusic();
+      stopMusic();
     }
     //@ts-ignore
     const newAudio: HTMLAudioElement = document.getElementById('myAudio');
@@ -107,7 +114,7 @@ export const AudioProvider = ({ children }: { children: any }) => {
     };
 
     if (current && audio) {
-      audio.pause();
+      audio.stop();
       setIsPlaying(false);
     }
 
@@ -128,7 +135,11 @@ export const AudioProvider = ({ children }: { children: any }) => {
         loadMusic,
         pauseMusic,
         playlist,
-        current
+        current,
+        address,
+        connected,
+        setAddress,
+        setConnected
       }}
     >
       {children}

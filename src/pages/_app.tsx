@@ -18,34 +18,14 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
       <AudioProvider>
-        <Grid
-          templateAreas={`"nav header"
-            "nav main"
-                  "nav footer"`}
-          gridTemplateRows={'50px 1fr 30px'}
-          gridTemplateColumns={'150px 1fr'}
-          h="200px"
-          color="blackAlpha.700"
-          fontWeight="bold"
-        >
-          <GridItem
-            pl="2"
-            area={'nav'}
-            display={['none', 'none', 'none', 'flex']}
-            flexDirection="column"
-          >
-            <SideNavigation />
-          </GridItem>
-          <GridItem pl="2" area={'header'}>
+        <Box width="100vw" height="100vh">
+          <SideNavigation />
+          <Box>
             <Navigation />
-          </GridItem>
-          <GridItem pl="2" area={'main'}>
             <Component {...pageProps} />
-          </GridItem>
-          <GridItem pl="2" area={'footer'}>
             <Footer />
-          </GridItem>
-        </Grid>
+          </Box>
+        </Box>
         <Player />
       </AudioProvider>
     </ChakraProvider>
