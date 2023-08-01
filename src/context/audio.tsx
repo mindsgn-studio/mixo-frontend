@@ -70,7 +70,7 @@ export const AudioProvider = ({ children }: { children: any }) => {
     );
     console.log(response);
   };
-  q;
+
   const stopMusic = () => {
     if (current && audio) {
       audio.stop();
