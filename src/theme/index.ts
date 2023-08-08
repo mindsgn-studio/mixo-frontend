@@ -10,7 +10,8 @@ const theme = extendTheme({
         justifyContent: 'center',
         alignItems: 'center',
         width: '100vw',
-        height: '100vh'
+        height: '100vh',
+        overflow: 'hidden'
       },
       text: {
         position: 'absolute'
