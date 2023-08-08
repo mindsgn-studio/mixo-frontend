@@ -1,11 +1,9 @@
-import { AllTracksContainer } from '@/components/allTracksContainer';
 import { Box } from '@chakra-ui/react';
-import type { GetServerSideProps } from 'next';
+import Logo from '@/components/logo';
 import Head from 'next/head';
+import { useState, useRef, useEffect } from 'react';
 
-export default function Home(props: any) {
-  const { tracks } = props;
-
+export default function Home() {
   return (
     <>
       <Head>
@@ -42,25 +40,7 @@ export default function Home(props: any) {
         />
         <meta property="twitter:image" content="/icon-192.png" />
       </Head>
-      <Box overflowY={'scroll'}>
-        <AllTracksContainer tracks={tracks} />
-      </Box>
+      <Logo />
     </>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const randomTracksResponse = await fetch(`${process.env.API}/song/random`, {
-    method: 'GET'
-  });
-
-  const trackResponse = await fetch(`${process.env.API}/song/all`, {
-    method: 'GET'
-  });
-
-  const tracks = await trackResponse.json();
-
-  return {
-    props: { tracks: tracks.data }
-  };
-};
