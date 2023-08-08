@@ -59,10 +59,6 @@ export default function Logo() {
     }
   }, []);
 
-  useEffect(() => {
-    resetLogo();
-  }, []);
-
   function getRandomColor(index: number) {
     if (index === 9) {
       return 'white';
