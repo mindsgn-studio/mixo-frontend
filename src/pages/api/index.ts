@@ -15,8 +15,6 @@ const handler = async (req: any, res: any) => {
         .find({})
         .sort({ timestamp: -1 })
         .toArray();
-    if (search) {
-    }
 
     return res.status(200).json({ tracks });
   } catch (error: any) {
