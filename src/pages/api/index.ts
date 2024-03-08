@@ -18,6 +18,8 @@ const handler = async (req: any, res: any) => {
           { title: { $regex: search, $options: 'i' } }, // Case-insensitive search for title
         ],
       };
+
+      await db.collection('searches').insertOne({ query: search, timestamp: new Date() });
     }
 
     const tracks = await db
