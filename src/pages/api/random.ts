@@ -9,13 +9,12 @@ const handler = async (req: any, res: any) => {
 
   try {
     const tracks = await db
-    .collection('tracks')
-    .aggregate([{ $sample: { size: limit } }])
-    .toArray();
-  
+      .collection('tracks')
+      .aggregate([{ $sample: { size: limit } }])
+      .toArray();
+
     return res.status(200).json({ tracks });
   } catch (error: any) {
-    console.log(error)
     return res.status(303).json({});
   }
 };

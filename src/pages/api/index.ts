@@ -36,7 +36,6 @@ const handler = async (req: any, res: any) => {
 
     return res.status(200).json({ tracks });
   } catch (error: any) {
-    console.log(error)
     return res.status(303).json({});
   }
 };
