@@ -6,7 +6,7 @@ const handler = async (req: any, res: any) => {
   const client = await clientPromise;
   const db = await client.db(`${process.env.MONGO_DB}`);
   const { query } = req;
-  const { search, page = 0 } = query;
+  const { search, page = 1 } = query;
   const limit = 10;
   const skip = (parseInt(page as string) - 1) * limit;
 
@@ -36,6 +36,7 @@ const handler = async (req: any, res: any) => {
 
     return res.status(200).json({ tracks });
   } catch (error: any) {
+    console.log(error)
     return res.status(303).json({});
   }
 };
