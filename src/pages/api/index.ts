@@ -34,15 +34,7 @@ const handler = async (req: any, res: any) => {
       .limit(limit)
       .toArray();
 
-    const albums = await db
-      .collection('albums')
-      .find(query)
-      .sort({ timestamp: -1 })
-      .skip(skip)
-      .limit(limit)
-      .toArray();
-
-    return res.status(200).json({ tracks, albums });
+    return res.status(200).json({ tracks });
   } catch (error: any) {
     return res.status(303).json({});
   }
