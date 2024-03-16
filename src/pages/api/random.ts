@@ -3,7 +3,7 @@ import { clientPromise } from '../../utility/database';
 const handler = async (req: any, res: any) => {
   const client = await clientPromise;
   const db = await client.db(`${process.env.MONGO_DB}`);
-  const limit = 10;
+  const limit = 50;
 
   try {
     const tracks = await db

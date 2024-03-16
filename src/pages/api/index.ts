@@ -5,7 +5,7 @@ const handler = async (req: any, res: any) => {
   const db = await client.db(`${process.env.MONGO_DB}`);
   const { query } = req;
   const { search, page = 1 } = query;
-  const limit = 10;
+  const limit = 50;
   const skip = (parseInt(page as string) - 1) * limit;
 
   try {
