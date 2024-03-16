@@ -1,8 +1,6 @@
-//@ts-ignore
 import { clientPromise } from '../../utility/database';
 
 const handler = async (req: any, res: any) => {
-  //@ts-ignore
   const client = await clientPromise;
   const db = await client.db(`${process.env.MONGO_DB}`);
   const limit = 10;

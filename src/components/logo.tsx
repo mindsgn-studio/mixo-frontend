@@ -60,16 +60,22 @@ export default function Logo() {
   }, []);
 
   function getRandomColor(index: number) {
-    if (index === 9) {
+    if (index === 4) {
       return 'white';
     }
-    const colors = ['red', 'blue', 'green', 'purple', 'yellow', 'orange'];
+    const colors = [
+      'red',
+      'blue',
+      'green',
+      'purple',
+      'yellow',
+      'orange'
+    ];
     return colors[Math.floor(Math.random() * colors.length)];
   }
 
   return (
     <Box
-      backgroundClip={'url("./background.mov")'}
       display="grid"
       placeItems={'center'}
       margin={'0'}
@@ -82,7 +88,7 @@ export default function Logo() {
         shiftLogo(e);
       }}
     >
-      {Array.from({ length: 10 }).map((_, index) => (
+      {Array.from({ length: 5 }).map((_, index) => (
         <Text
           key={index}
           fontWeight="bold"
